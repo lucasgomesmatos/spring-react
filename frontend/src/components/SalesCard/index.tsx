@@ -16,7 +16,7 @@ export const SalesCard = () => {
         </div>
 
         <div>
-          <table className="dsmeta-sales-table">
+          <table className={styles.salesTable}>
             <thead>
               <tr>
                 <th className="show992">ID</th>
