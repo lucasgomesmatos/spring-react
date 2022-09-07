@@ -58,3 +58,40 @@
 .salesTable tbody tr:nth-child(odd) {
   background-color: #242c3b;
 }
+
+.redBtnContainer {
+  display: flex;
+  justify-content: center;
+}
+
+.show576 {
+  display: none;
+}
+
+.show992 {
+  display: none;
+}
+
+@media (min-width: 576px) {
+  .show576 {
+    display: table-cell;
+  }
+
+  .card {
+    padding: 35px;
+  }
+
+  .salesTable tbody tr {
+    height: 55px;
+  }
+
+  .salesTable tbody {
+    font-size: 18px;
+  }
+}
+
+@media (min-width: 992px) {
+  .show992 {
+    display: table-cell;
+  }
+}
