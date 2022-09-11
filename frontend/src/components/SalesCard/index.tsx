@@ -1,10 +1,11 @@
 import { NotificationButton } from '../NotificationButton';
 import styles from './SalesCard.module.css';
-import DatePicker from 'react-datepicker';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { BASE_URL } from '../../utils/request';
 import { Sale } from '../../models/sale';
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
 
 export const SalesCard = () => {
   const min = new Date(new Date().setDate(new Date().getDate() - 365));
@@ -14,10 +15,13 @@ export const SalesCard = () => {
   const [sales, setSales] = useState<Sale[]>([]);
 
   useEffect(() => {
-    axios.get(`${BASE_URL}/sales`).then((res) => setSales(res.data.content));
-  }, []);
+    const dmin = minDate.toISOString().slice(0, 10);
+    const dmax = minDate.toISOString().slice(0, 10);
 
-  console.log(sales);
+    axios
+      .get(`${BASE_URL}/sales?minDate=${dmin}&maxDate=2021-12-31`)
+      .then((res) => setSales(res.data.content));
+  }, [maxDate, minDate]);
 
   return (
     <>
@@ -72,7 +76,7 @@ export const SalesCard = () => {
                   <td>R$ {amount.toFixed(2)}</td>
                   <td>
                     <div className={styles.redBtnContainer}>
-                      <NotificationButton />
+                      <NotificationButton saleId={id} />
                     </div>
                   </td>
                 </tr>
